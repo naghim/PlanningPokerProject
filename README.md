@@ -1,2 +1,2 @@
 # PlanningPokerProject
-A Planning Poker app. 
+A Planning Poker app (homework assignment). 
