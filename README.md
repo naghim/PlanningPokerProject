@@ -1,7 +1,7 @@
 # PlanningPokerProject
 A Planning Poker app (homework assignment). 
 
-# Topic 
+# Topic: 
 Creating our own Planning Poker application for an IT company. This is the admin part. The client can be found [here](https://github.com/naghim/PlanningPokerProjectClient).
 
 # Requirements:
