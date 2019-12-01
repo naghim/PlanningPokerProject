@@ -29,6 +29,12 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
     }
 
+    public void onButtonBackClick(View view){
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction tx = fm.beginTransaction();
+        tx.replace( R.id.fragment_place, new ListQuestionsFragment() ).addToBackStack( "tag" ).commit();
+    }
+
     public void onButtonClickAddQuestion(View view) {
 
         FragmentManager fm = getSupportFragmentManager();

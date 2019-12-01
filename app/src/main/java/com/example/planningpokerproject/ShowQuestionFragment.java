@@ -62,8 +62,8 @@ public class ShowQuestionFragment extends Fragment {
                 //ez csinal egy masolatot es itt toltom le az adatokat
                 for (DataSnapshot iter : dataSnapshot.getChildren()) {/**/
                     Question question = iter.getValue(Question.class);
-                    if (question.getQuestionText() == globals.getQuestionText()){
-                        for (User user : question.getUser_resp()){
+                    if (question.getUser_resp() != null && question.getQuestionText() == globals.getQuestionText()){
+                        for (User user : question.getUser_resp().values()){
                             if (user != null) {
                                 userRecycleArrayList.add(user);
                             }
@@ -71,7 +71,9 @@ public class ShowQuestionFragment extends Fragment {
                     }
                 }
 
-                mAdapterUssUser.notifyDataSetChanged();
+                if (userRecycleArrayList.size() > 0){
+                    mAdapterUssUser.notifyDataSetChanged();
+                }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
