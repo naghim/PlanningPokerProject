@@ -27,7 +27,7 @@ import java.util.List;
 public class ShowQuestionFragment extends Fragment {
 
     private RecyclerView mMy_recycler_view_users;
-    private DatabaseReference databaseReference;//ramutatunk ezzel egy cimre
+    private DatabaseReference databaseReference;
     private Globals globals = Globals.getInstance();
     private RecyclerAdapterUser mAdapterUssUser;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -46,21 +46,23 @@ public class ShowQuestionFragment extends Fragment {
         return view;
     }
 
+    // Creates RecyclerView...
     public void createRecycleList(){
         userRecycleArrayList = new ArrayList<>();
         this.getAllData();
     }
 
+    // Queries the user responses for a particular question.
     public void getAllData(){
-        databaseReference = FirebaseDatabase.getInstance().getReference();//ezzel ferunk hozza
+        userRecycleArrayList.clear();
+        databaseReference = FirebaseDatabase.getInstance().getReference(); // ref to the db
         databaseReference.child("groups")
                 .child(globals.getGroupName())
                 .child("questions")
                 .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //ez csinal egy masolatot es itt toltom le az adatokat
-                for (DataSnapshot iter : dataSnapshot.getChildren()) {/**/
+                for (DataSnapshot iter : dataSnapshot.getChildren()) {
                     Question question = iter.getValue(Question.class);
                     if (question.getUser_resp() != null && question.getQuestionText() == globals.getQuestionText()){
                         for (User user : question.getUser_resp().values()){
@@ -77,12 +79,13 @@ public class ShowQuestionFragment extends Fragment {
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                //ha nem sikerul az adat lekerdezes
+                // if query doesn't succeed...
                 throw databaseError.toException();
             }
         });
     }
 
+    // Builds the RecyclerView...
     public void buildRecycleView(View view){
         mMy_recycler_view_users = view.findViewById(R.id.my_recycler_view_users);
         mLayoutManager = new LinearLayoutManager(this.mContext);

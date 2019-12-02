@@ -40,7 +40,7 @@ public class AddQuestionFragment extends Fragment {
         this.mInsertButton = view.findViewById(R.id.insertButton);
         this.mIsActiveCheckBox = view.findViewById(R.id.isActiveCheckBox);
 
-
+        // Datepicker for date
         mStartDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +59,7 @@ public class AddQuestionFragment extends Fragment {
             }
         });
 
-
+        // Datepicker for date
         mEndDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +78,7 @@ public class AddQuestionFragment extends Fragment {
             }
         });
 
+        // Listener for insert question button
         mInsertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,13 +94,11 @@ public class AddQuestionFragment extends Fragment {
 
                 String cQuestionID = UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
                 String cUser = UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
-                //TODO: cID == GroupName
+
                 DatabaseReference addQuestionDatabaseReference = FirebaseDatabase.getInstance()
                         .getReference("groups").child(globals.getGroupName()).child("questions").child(cQuestionID);
                 addQuestionDatabaseReference.child("question_txt").setValue(mQuestionDescriptionEditText.getText().toString());
                 addQuestionDatabaseReference.child("is_active").setValue(mIsActiveCheckBox.isChecked() == true ? 1 : 0);
-                //addQuestionDatabaseReference.child("user_resp").child(cUser).child("name").setValue("dummy");
-                //addQuestionDatabaseReference.child("user_resp").child(cUser).child("value").setValue(0);
 
                 Toast.makeText(getContext(), "New question created",
                         Toast.LENGTH_SHORT).show();

@@ -55,9 +55,9 @@ public class Group {
         return this.end_time;
     }
 
-    public Collection<Question> getQuestionList()
+    public HashMap<String, Question> getQuestionList()
     {
-        return this.questions.values();
+        return this.questions;
     }
 }
 

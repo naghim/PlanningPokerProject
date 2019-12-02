@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
     }
 
+    // On login button click: after the user signed in, shows the questions for the group. Initially it will be an empty list.
     public void onButtonClick(View view) {
 
         FragmentManager fm = getSupportFragmentManager();
@@ -29,12 +30,14 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
     }
 
+    // On back pressed.
     public void onButtonBackClick(View view){
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction tx = fm.beginTransaction();
         tx.replace( R.id.fragment_place, new ListQuestionsFragment() ).addToBackStack( "tag" ).commit();
     }
 
+    // On add question button click: Shows add question fragment.
     public void onButtonClickAddQuestion(View view) {
 
         FragmentManager fm = getSupportFragmentManager();
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
     }
 
+    // Shows votes for a particular question.
     public void onButtonClickShowQuestion(View view,int pos) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
